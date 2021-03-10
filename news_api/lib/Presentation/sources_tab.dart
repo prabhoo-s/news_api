@@ -1,15 +1,15 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:news_api/Data/Models/top_headlines.dart';
+import 'package:news_api/Data/Models/sources.dart';
 
-import 'top_headlines_tab_row.dart';
+import 'sources_tab_row.dart';
 
-class TopHeadlinesTab extends StatefulWidget {
+class SourcesTab extends StatefulWidget {
   @override
-  _TopHeadlinesTabState createState() => _TopHeadlinesTabState();
+  _SourcesTabState createState() => _SourcesTabState();
 }
 
-class _TopHeadlinesTabState extends State<TopHeadlinesTab> {
+class _SourcesTabState extends State<SourcesTab> {
   ScrollController scrollController;
 
   @override
@@ -27,10 +27,11 @@ class _TopHeadlinesTabState extends State<TopHeadlinesTab> {
         controller: scrollController,
         slivers: <Widget>[
           CupertinoSliverNavigationBar(
-            largeTitle: Text('Top Headlines'),
+            largeTitle: Text('News Sources'),
             trailing: CupertinoButton(
               child: Icon(Icons.refresh, size: 32.0),
               onPressed: () {
+                _scrollToTop();
               },
               padding: EdgeInsets.all(0.0),
             ),
@@ -40,12 +41,11 @@ class _TopHeadlinesTabState extends State<TopHeadlinesTab> {
             minimum: const EdgeInsets.only(top: 8),
             sliver: SliverList(
               delegate: SliverChildBuilderDelegate(
-                (context, index) {
+                    (context, index) {
                   if (index < products.length) {
-                    final obj = _dummyObj();
-                    return TopHeadlinesRowItem(
-                      article: obj[index],
-                      lastItem: index == obj.length - 1,
+                    return SourcesTabRow(
+                      source: products[index],
+                      lastItem: index == products.length - 1,
                     );
                   }
 
@@ -59,10 +59,15 @@ class _TopHeadlinesTabState extends State<TopHeadlinesTab> {
     );
   }
 
-  List<TopHeadlines> _dummyObj() {
-    return [TopHeadlines("this.author", "this.title", "this.description", "https://www.google.com",
-        "https://www.att.com/shopcms/media/att/catalog/devices/apple-iphone%2012-product%20red-240x320.png", "this.publishedAt"),
-      TopHeadlines("this.author", "this.title", "this.description", "https://www.google.com",
-          "https://www.att.com/shopcms/media/att/catalog/devices/apple-iphone%2012-product%20red-240x320.png", "this.publishedAt")];
+  void _scrollToTop() {
+    scrollController.animateTo(0,
+        duration: Duration(milliseconds: 500), curve: Curves.easeInOut);
+  }
+
+  List<Sources> _dummyObj() {
+    return [Sources("this.author", "this.title", "this.description", "https://www.google.com",
+        "https://www.att.com/shopcms/media/att/catalog/devices/apple-iphone%2012-product%20red-240x320.png", "this.publishedAt", "this.publishedAt"),
+      Sources("this.author", "this.title", "this.description", "https://www.google.com",
+          "https://www.att.com/shopcms/media/att/catalog/devices/apple-iphone%2012-product%20red-240x320.png", "this.publishedAt", "this.publishedAt")];
   }
 }

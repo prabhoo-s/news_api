@@ -13,6 +13,9 @@ class NewsApiApp extends StatelessWidget {
 
     return CupertinoApp(
       theme: const CupertinoThemeData(brightness: Brightness.light),
+      // Hide the debug banner
+      debugShowCheckedModeBanner: false,
+      title: 'News API',
       home: LandingScreen(),
     );
   }

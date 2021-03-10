@@ -1,7 +1,7 @@
 import 'package:flutter/cupertino.dart';
 
-import 'search.dart';
-import 'sources.dart';
+import 'find_tab.dart';
+import 'sources_tab.dart';
 import 'top_headlines_tab.dart';
 
 class LandingScreen extends StatelessWidget {
@@ -16,12 +16,12 @@ class LandingScreen extends StatelessWidget {
             label: 'Breaking News',
           ),
           BottomNavigationBarItem(
-            icon: Icon(CupertinoIcons.list_bullet),
-            label: 'Sources',
-          ),
-          BottomNavigationBarItem(
             icon: Icon(CupertinoIcons.search),
             label: 'Search',
+          ),
+          BottomNavigationBarItem(
+            icon: Icon(CupertinoIcons.list_bullet),
+            label: 'Sources',
           ),
         ],
       ),
@@ -38,7 +38,7 @@ class LandingScreen extends StatelessWidget {
           case 1:
             returnValue = CupertinoTabView(builder: (context) {
               return CupertinoPageScaffold(
-                child: SearchTab(),
+                child: FindTab(),
               );
             });
             break;
