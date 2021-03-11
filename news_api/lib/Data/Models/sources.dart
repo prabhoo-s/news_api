@@ -9,4 +9,13 @@ class Sources {
 
   Sources(this.id, this.name, this.description, this.url, this.category,
       this.country, this.language);
+
+  Sources.fromJson(Map<String, dynamic> json)
+      : id = json["id"],
+        name = json["name"],
+        description = json["description"],
+        url = json["url"],
+        category = json["category"],
+        country = json["country"],
+        language = json["language"];
 }

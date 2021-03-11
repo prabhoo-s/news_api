@@ -4,7 +4,7 @@ import 'package:news_api/Data/Models/top_headlines.dart';
 class THTabRowText extends StatelessWidget {
   final TopHeadlines article;
 
-  const THTabRowText({this.article});
+  const THTabRowText({required this.article});
 
   @override
   Widget build(BuildContext context) {

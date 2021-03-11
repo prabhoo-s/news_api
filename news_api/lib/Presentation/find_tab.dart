@@ -88,6 +88,8 @@ class _FindTabState extends State<FindTab> {
     );
 
     return MaterialApp(
+      // Hide the debug banner
+      debugShowCheckedModeBanner: false,
       home: Scaffold(
         resizeToAvoidBottomInset: false,
         body: Column(

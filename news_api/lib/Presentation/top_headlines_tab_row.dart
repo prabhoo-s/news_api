@@ -9,8 +9,8 @@ import 'th_tab_row_text.dart';
 
 class TopHeadlinesRowItem extends StatelessWidget {
   const TopHeadlinesRowItem({
-    this.article,
-    this.lastItem,
+    required this.article,
+    required this.lastItem,
   });
 
   final TopHeadlines article;

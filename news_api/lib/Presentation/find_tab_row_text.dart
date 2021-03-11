@@ -4,7 +4,7 @@ import 'package:news_api/Data/Models/sources.dart';
 class FindTabRowText extends StatelessWidget {
   final Sources source;
 
-  const FindTabRowText({this.source});
+  const FindTabRowText({required this.source});
 
   @override
   Widget build(BuildContext context) {

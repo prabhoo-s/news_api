@@ -7,8 +7,8 @@ import 'find_tab_row_text.dart';
 
 class SourcesTabRow extends StatelessWidget {
   const SourcesTabRow({
-    this.source,
-    this.lastItem,
+    required this.source,
+    required this.lastItem,
   });
 
   final Sources source;
