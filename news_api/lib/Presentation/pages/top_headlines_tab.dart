@@ -92,4 +92,11 @@ class _TopHeadlinesTabState extends State<TopHeadlinesTab> {
     scrollController.animateTo(0,
         duration: Duration(milliseconds: 500), curve: Curves.easeInOut);
   }
+
+  @override
+  void dispose() {
+    // TODO: implement dispose
+    super.dispose();
+    _bloc.dispose();
+  }
 }

@@ -51,7 +51,7 @@ class _SourcesTabState extends State<SourcesTab> {
                   minimum: const EdgeInsets.only(top: 8),
                   sliver: SliverList(
                     delegate: SliverChildBuilderDelegate(
-                          (context, index) {
+                      (context, index) {
                         if (index < products.length) {
                           return SourcesTabRow(
                             source: products[index],
@@ -86,5 +86,12 @@ class _SourcesTabState extends State<SourcesTab> {
   void _scrollToTop() {
     scrollController.animateTo(0,
         duration: Duration(milliseconds: 500), curve: Curves.easeInOut);
+  }
+
+  @override
+  void dispose() {
+    // TODO: implement dispose
+    super.dispose();
+    _bloc.dispose();
   }
 }

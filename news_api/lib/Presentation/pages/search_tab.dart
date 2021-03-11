@@ -160,4 +160,11 @@ class _SearchTabState extends State<SearchTab> {
       _bloc.submitQuery(value);
     }
   }
+
+  @override
+  void dispose() {
+    // TODO: implement dispose
+    super.dispose();
+    _bloc.dispose();
+  }
 }
