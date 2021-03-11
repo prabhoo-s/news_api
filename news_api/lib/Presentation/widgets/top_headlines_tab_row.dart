@@ -1,11 +1,11 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:news_api/Data/Models/top_headlines.dart';
-import 'package:news_api/Presentation/details_screen.dart';
+import 'package:news_api/Presentation/pages/details_screen.dart';
+import 'package:news_api/Presentation/widgets/th_tab_row_text.dart';
 import 'package:news_api/Styles.dart';
 
 import 'th_tab_row_image.dart';
-import 'th_tab_row_text.dart';
 
 class TopHeadlinesRowItem extends StatelessWidget {
   const TopHeadlinesRowItem({

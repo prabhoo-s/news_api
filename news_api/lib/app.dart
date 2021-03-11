@@ -1,8 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-
-import 'Presentation/landing_screen.dart';
+import 'package:news_api/Presentation/pages/landing_screen.dart';
 
 class NewsApiApp extends StatelessWidget {
   @override

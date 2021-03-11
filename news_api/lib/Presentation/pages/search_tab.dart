@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:news_api/Data/Models/top_headlines.dart';
 import 'package:news_api/Presentation/bloc/bloc_events.dart';
 import 'package:news_api/Presentation/bloc/search_bloc.dart';
-import 'package:news_api/Presentation/top_headlines_tab_row.dart';
+import 'package:news_api/Presentation/widgets/top_headlines_tab_row.dart';
 import 'package:news_api/Styles.dart';
 
 class SearchTab extends StatefulWidget {

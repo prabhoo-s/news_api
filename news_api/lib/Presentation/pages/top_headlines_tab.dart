@@ -5,8 +5,8 @@ import 'package:news_api/Domain/Repositories/singleton_storage.dart';
 import 'package:news_api/Presentation/bloc/bloc_events.dart';
 import 'package:news_api/Styles.dart';
 
-import 'bloc/headlines_bloc.dart';
-import 'top_headlines_tab_row.dart';
+import '../bloc/headlines_bloc.dart';
+import '../widgets/top_headlines_tab_row.dart';
 
 class TopHeadlinesTab extends StatefulWidget {
   @override

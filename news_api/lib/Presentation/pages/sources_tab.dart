@@ -3,9 +3,8 @@ import 'package:flutter/material.dart';
 import 'package:news_api/Data/Models/sources_list.dart';
 import 'package:news_api/Presentation/bloc/bloc_events.dart';
 import 'package:news_api/Presentation/bloc/sources_bloc.dart';
+import 'package:news_api/Presentation/widgets/sources_tab_row.dart';
 import 'package:news_api/Styles.dart';
-
-import 'sources_tab_row.dart';
 
 class SourcesTab extends StatefulWidget {
   @override
