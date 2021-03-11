@@ -1,4 +1,5 @@
 import 'package:flutter/cupertino.dart';
+import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
 import 'Presentation/landing_screen.dart';
@@ -17,6 +18,11 @@ class NewsApiApp extends StatelessWidget {
       debugShowCheckedModeBanner: false,
       title: 'News API',
       home: LandingScreen(),
+      localizationsDelegates: [
+        DefaultMaterialLocalizations.delegate,
+        DefaultCupertinoLocalizations.delegate,
+        DefaultWidgetsLocalizations.delegate,
+      ],
     );
   }
 }

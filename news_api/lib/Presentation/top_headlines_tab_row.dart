@@ -3,7 +3,6 @@ import 'package:flutter/material.dart';
 import 'package:news_api/Data/Models/top_headlines.dart';
 import 'package:news_api/Presentation/details_screen.dart';
 import 'package:news_api/Styles.dart';
-import 'package:url_launcher/url_launcher.dart';
 
 import 'th_tab_row_image.dart';
 import 'th_tab_row_text.dart';
@@ -30,8 +29,10 @@ class TopHeadlinesRowItem extends StatelessWidget {
       ),
       child: GestureDetector(
         onTap: () {
-          Navigator.push(context,
-              MaterialPageRoute(builder: (builder) => DetailsScreen(news: article)));
+          Navigator.push(
+              context,
+              MaterialPageRoute(
+                  builder: (builder) => DetailsScreen(news: article)));
           // launch(article.url);
         },
         child: Row(
@@ -42,15 +43,9 @@ class TopHeadlinesRowItem extends StatelessWidget {
             Expanded(
               child: THTabRowText(article: article),
             ),
-            CupertinoButton(
-              padding: EdgeInsets.zero,
-              onPressed: () {
-                launch(article.url);
-              },
-              child: const Icon(
-                Icons.keyboard_arrow_right,
-                semanticLabel: 'Disclosure',
-              ),
+            Icon(
+              Icons.keyboard_arrow_right,
+              semanticLabel: 'Disclosure',
             ),
           ],
         ),

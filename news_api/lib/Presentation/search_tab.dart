@@ -60,23 +60,23 @@ class _SearchTabState extends State<SearchTab> {
                         fillColor: Colors.grey[100],
                         suffixIcon: _searchController.text.length > 0
                             ? IconButton(
-                            icon: Icon(Icons.clear),
-                            onPressed: () {
-                              setState(() {
-                                FocusScope.of(context)
-                                    .requestFocus(FocusNode());
-                                _searchController.clear();
-                              });
-                            })
+                                icon: Icon(Icons.clear),
+                                onPressed: () {
+                                  setState(() {
+                                    FocusScope.of(context)
+                                        .requestFocus(FocusNode());
+                                    _searchController.clear();
+                                  });
+                                })
                             : IconButton(
-                            icon: Icon(Icons.search),
-                            onPressed: () {
-                              setState(() {
-                                FocusScope.of(context)
-                                    .requestFocus(FocusNode());
-                                _search(_searchController.text);
-                              });
-                            }),
+                                icon: Icon(Icons.search),
+                                onPressed: () {
+                                  setState(() {
+                                    FocusScope.of(context)
+                                        .requestFocus(FocusNode());
+                                    _search(_searchController.text);
+                                  });
+                                }),
                         enabledBorder: OutlineInputBorder(
                             borderSide: new BorderSide(
                                 color: Colors.grey.withOpacity(0.3)),
@@ -86,7 +86,7 @@ class _SearchTabState extends State<SearchTab> {
                                 color: Colors.grey.withOpacity(0.3)),
                             borderRadius: BorderRadius.circular(30.0)),
                         contentPadding:
-                        EdgeInsets.only(left: 15.0, right: 10.0),
+                            EdgeInsets.only(left: 15.0, right: 10.0),
                         labelText: "Search by news title",
                         hintStyle: Styles.appSemiLight,
                         labelStyle: Styles.appDisabledGray,
@@ -102,55 +102,53 @@ class _SearchTabState extends State<SearchTab> {
       ),
     );
 
-    return MaterialApp(
-      home: Scaffold(
-        resizeToAvoidBottomInset: false,
-        backgroundColor: Styles.scaffoldBackground,
-        body: Column(
-          children: <Widget>[
-            row,
-            Expanded(
-              child: StreamBuilder(
-                stream: _bloc.response,
-                builder: (BuildContext context,
-                    AsyncSnapshot<List<TopHeadlines>> snapshot) {
-                  final products = snapshot.data ?? [];
-                  return CustomScrollView(
-                    semanticChildCount: products.length,
-                    slivers: <Widget>[
-                      SliverSafeArea(
-                        top: false,
-                        minimum: const EdgeInsets.only(top: 8),
-                        sliver: SliverList(
-                          delegate: SliverChildBuilderDelegate(
-                                (context, index) {
-                              if (index < products.length) {
-                                return TopHeadlinesRowItem(
-                                  article: products[index],
-                                  lastItem: index == products.length - 1,
-                                );
-                              }
-                              return null;
-                            },
-                          ),
+    return Scaffold(
+      resizeToAvoidBottomInset: false,
+      backgroundColor: Styles.scaffoldBackground,
+      body: Column(
+        children: <Widget>[
+          row,
+          Expanded(
+            child: StreamBuilder(
+              stream: _bloc.response,
+              builder: (BuildContext context,
+                  AsyncSnapshot<List<TopHeadlines>> snapshot) {
+                final products = snapshot.data ?? [];
+                return CustomScrollView(
+                  semanticChildCount: products.length,
+                  slivers: <Widget>[
+                    SliverSafeArea(
+                      top: false,
+                      minimum: const EdgeInsets.only(top: 8),
+                      sliver: SliverList(
+                        delegate: SliverChildBuilderDelegate(
+                          (context, index) {
+                            if (index < products.length) {
+                              return TopHeadlinesRowItem(
+                                article: products[index],
+                                lastItem: index == products.length - 1,
+                              );
+                            }
+                            return null;
+                          },
                         ),
-                      )
-                    ],
-                  );
-                },
-              ),
+                      ),
+                    )
+                  ],
+                );
+              },
             ),
-          ],
-        ),
-        floatingActionButtonLocation: FloatingActionButtonLocation.endDocked,
-        floatingActionButton: FloatingActionButton.extended(
-          backgroundColor: Colors.blue,
-          onPressed: () {
-            _search('');
-          },
-          label: Text('Clear Results', style: Styles.appNormalWhite),
-          icon: Icon(Icons.clear),
-        ),
+          ),
+        ],
+      ),
+      floatingActionButtonLocation: FloatingActionButtonLocation.endDocked,
+      floatingActionButton: FloatingActionButton.extended(
+        backgroundColor: Colors.blue,
+        onPressed: () {
+          _search('');
+        },
+        label: Text('Clear Results', style: Styles.appNormalWhite),
+        icon: Icon(Icons.clear),
       ),
     );
   }
@@ -163,4 +161,3 @@ class _SearchTabState extends State<SearchTab> {
     }
   }
 }
-

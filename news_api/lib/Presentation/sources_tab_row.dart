@@ -40,8 +40,7 @@ class SourcesTabRow extends StatelessWidget {
               launch(source.url);
             },
             child: const Icon(
-              CupertinoIcons.info,
-              semanticLabel: 'Add',
+              Icons.open_in_browser_outlined,
             ),
           ),
         ],
