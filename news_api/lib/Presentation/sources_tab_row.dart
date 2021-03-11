@@ -1,9 +1,10 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:news_api/Data/Models/sources.dart';
+import 'package:news_api/Styles.dart';
 import 'package:url_launcher/url_launcher.dart';
 
-import 'find_tab_row_text.dart';
+import 'sources_tab_row_text.dart';
 
 class SourcesTabRow extends StatelessWidget {
   const SourcesTabRow({
@@ -30,7 +31,7 @@ class SourcesTabRow extends StatelessWidget {
           Expanded(
             child: Padding(
               padding: const EdgeInsets.symmetric(horizontal: 12),
-              child: FindTabRowText(source: source),
+              child: SourcesTabRowText(source: source),
             ),
           ),
           CupertinoButton(
@@ -61,7 +62,7 @@ class SourcesTabRow extends StatelessWidget {
           ),
           child: Container(
             height: 1,
-            color: Colors.grey,
+            color: Styles.rowDivider,
           ),
         ),
       ],

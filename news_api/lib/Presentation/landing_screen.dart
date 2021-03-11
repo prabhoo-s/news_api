@@ -13,7 +13,7 @@ class LandingScreen extends StatelessWidget {
         items: const <BottomNavigationBarItem>[
           BottomNavigationBarItem(
             icon: Icon(CupertinoIcons.news_solid),
-            label: 'Breaking News',
+            label: 'Headlines',
           ),
           BottomNavigationBarItem(
             icon: Icon(CupertinoIcons.search),

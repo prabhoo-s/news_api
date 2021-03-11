@@ -2,6 +2,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:news_api/Data/Models/top_headlines_list.dart';
 import 'package:news_api/Domain/Repositories/api_repository.dart';
+import 'package:news_api/Styles.dart';
 
 import 'top_headlines_tab_row.dart';
 
@@ -30,6 +31,7 @@ class _TopHeadlinesTabState extends State<TopHeadlinesTab> {
         if (snapshot.hasData) {
           final products = snapshot.data!.articles;
           return Container(
+            color: Styles.scaffoldBackground,
             child: CustomScrollView(
               semanticChildCount: products.length,
               controller: scrollController,

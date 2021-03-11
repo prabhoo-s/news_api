@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:news_api/Data/Models/sources.dart';
 import 'package:news_api/Data/Models/sources_list.dart';
 import 'package:news_api/Domain/Repositories/api_repository.dart';
+import 'package:news_api/Styles.dart';
 
 import 'sources_tab_row.dart';
 
@@ -31,6 +32,7 @@ class _SourcesTabState extends State<SourcesTab> {
           final products = snapshot.data!.sources;
 
           return Container(
+            color: Styles.scaffoldBackground,
             child: CustomScrollView(
               semanticChildCount: products.length,
               controller: scrollController,

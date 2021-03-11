@@ -1,5 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:news_api/Styles.dart';
 
 class FindTab extends StatefulWidget {
   @override
@@ -75,6 +76,8 @@ class _FindTabState extends State<FindTab> {
                         contentPadding:
                         EdgeInsets.only(left: 15.0, right: 10.0),
                         labelText: "Search by news title",
+                        hintStyle: Styles.appSemiLight,
+                        labelStyle: Styles.appDisabledGray,
                       ),
                       autocorrect: false,
                     ),
@@ -102,9 +105,7 @@ class _FindTabState extends State<FindTab> {
           backgroundColor: Colors.blue,
           onPressed: () {
           },
-          label: Text('Reload Results', style: TextStyle(
-            fontStyle: FontStyle.normal
-          )),
+          label: Text('Clear Results', style: Styles.appNormalWhite),
           icon: Icon(Icons.clear),
         ),
       ),

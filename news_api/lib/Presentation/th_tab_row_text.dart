@@ -1,5 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:news_api/Data/Models/top_headlines.dart';
+import 'package:news_api/Styles.dart';
 
 class THTabRowText extends StatelessWidget {
   final TopHeadlines article;
@@ -16,11 +17,13 @@ class THTabRowText extends StatelessWidget {
         children: <Widget>[
           Text(
             article.title,
+            style: Styles.appNormal,
           ),
           const Padding(padding: EdgeInsets.only(top: 8)),
           Text(
             'By ${article.author}',
             overflow: TextOverflow.ellipsis,
+            style: Styles.appSemiLight,
           )
         ],
       ),

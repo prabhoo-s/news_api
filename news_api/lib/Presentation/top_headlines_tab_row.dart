@@ -2,6 +2,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:news_api/Data/Models/top_headlines.dart';
 import 'package:news_api/Presentation/details_screen.dart';
+import 'package:news_api/Styles.dart';
 import 'package:url_launcher/url_launcher.dart';
 
 import 'th_tab_row_image.dart';
@@ -70,7 +71,7 @@ class TopHeadlinesRowItem extends StatelessWidget {
           ),
           child: Container(
             height: 1,
-            color: Colors.grey,
+            color: Styles.rowDivider,
           ),
         ),
       ],

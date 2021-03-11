@@ -1,10 +1,11 @@
 import 'package:flutter/cupertino.dart';
 import 'package:news_api/Data/Models/sources.dart';
+import 'package:news_api/Styles.dart';
 
-class FindTabRowText extends StatelessWidget {
+class SourcesTabRowText extends StatelessWidget {
   final Sources source;
 
-  const FindTabRowText({required this.source});
+  const SourcesTabRowText({required this.source});
 
   @override
   Widget build(BuildContext context) {
@@ -14,23 +15,17 @@ class FindTabRowText extends StatelessWidget {
       children: <Widget>[
         Text(
           source.name,
-          style: TextStyle(
-            fontStyle: FontStyle.normal
-          ),
+          style: Styles.appBold,
         ),
         const Padding(padding: EdgeInsets.only(top: 8)),
         Text(
           source.description,
-          style: TextStyle(
-              fontStyle: FontStyle.normal
-          ),
+          style: Styles.appNormal,
         ),
         const Padding(padding: EdgeInsets.only(top: 8)),
         Text(
           source.url,
-          style: TextStyle(
-              fontStyle: FontStyle.normal
-          ),
+          style: Styles.appDisabledGray,
         ),
       ],
     );
