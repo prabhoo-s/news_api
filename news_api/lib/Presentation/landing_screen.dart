@@ -1,6 +1,6 @@
 import 'package:flutter/cupertino.dart';
 
-import 'find_tab.dart';
+import 'search_tab.dart';
 import 'sources_tab.dart';
 import 'top_headlines_tab.dart';
 
@@ -38,7 +38,7 @@ class LandingScreen extends StatelessWidget {
           case 1:
             returnValue = CupertinoTabView(builder: (context) {
               return CupertinoPageScaffold(
-                child: FindTab(),
+                child: SearchTab(),
               );
             });
             break;

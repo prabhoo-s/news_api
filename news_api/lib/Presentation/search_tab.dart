@@ -1,16 +1,27 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:news_api/Data/Models/top_headlines.dart';
+import 'package:news_api/Presentation/bloc/bloc_events.dart';
+import 'package:news_api/Presentation/bloc/search_bloc.dart';
+import 'package:news_api/Presentation/top_headlines_tab_row.dart';
 import 'package:news_api/Styles.dart';
 
-class FindTab extends StatefulWidget {
+class SearchTab extends StatefulWidget {
   @override
-  _FindTabState createState() {
-    return _FindTabState();
+  _SearchTabState createState() {
+    return _SearchTabState();
   }
 }
 
-class _FindTabState extends State<FindTab> {
+class _SearchTabState extends State<SearchTab> {
   final _searchController = TextEditingController();
+  final _bloc = SearchBLoC();
+
+  @override
+  void initState() {
+    super.initState();
+    _bloc.serviceEventSink.add(ClearSearch());
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -37,11 +48,10 @@ class _FindTabState extends State<FindTab> {
                     padding: const EdgeInsets.only(
                         left: 0.0, right: 0.0, top: 0.0, bottom: 0.0),
                     child: TextFormField(
-                      style: TextStyle(
-                        fontStyle: FontStyle.normal
-                      ),
+                      style: Styles.appNormal,
                       controller: _searchController,
                       onChanged: (value) {
+                        _search(value);
                       },
                       textInputAction: TextInputAction.done,
                       decoration: InputDecoration(
@@ -55,6 +65,7 @@ class _FindTabState extends State<FindTab> {
                               setState(() {
                                 FocusScope.of(context)
                                     .requestFocus(FocusNode());
+                                _searchController.clear();
                               });
                             })
                             : IconButton(
@@ -63,6 +74,7 @@ class _FindTabState extends State<FindTab> {
                               setState(() {
                                 FocusScope.of(context)
                                     .requestFocus(FocusNode());
+                                _search(_searchController.text);
                               });
                             }),
                         enabledBorder: OutlineInputBorder(
@@ -91,19 +103,50 @@ class _FindTabState extends State<FindTab> {
     );
 
     return MaterialApp(
-      // Hide the debug banner
-      debugShowCheckedModeBanner: false,
       home: Scaffold(
         resizeToAvoidBottomInset: false,
+        backgroundColor: Styles.scaffoldBackground,
         body: Column(
           children: <Widget>[
             row,
+            Expanded(
+              child: StreamBuilder(
+                stream: _bloc.response,
+                builder: (BuildContext context,
+                    AsyncSnapshot<List<TopHeadlines>> snapshot) {
+                  final products = snapshot.data ?? [];
+                  return CustomScrollView(
+                    semanticChildCount: products.length,
+                    slivers: <Widget>[
+                      SliverSafeArea(
+                        top: false,
+                        minimum: const EdgeInsets.only(top: 8),
+                        sliver: SliverList(
+                          delegate: SliverChildBuilderDelegate(
+                                (context, index) {
+                              if (index < products.length) {
+                                return TopHeadlinesRowItem(
+                                  article: products[index],
+                                  lastItem: index == products.length - 1,
+                                );
+                              }
+                              return null;
+                            },
+                          ),
+                        ),
+                      )
+                    ],
+                  );
+                },
+              ),
+            ),
           ],
         ),
         floatingActionButtonLocation: FloatingActionButtonLocation.endDocked,
         floatingActionButton: FloatingActionButton.extended(
           backgroundColor: Colors.blue,
           onPressed: () {
+            _search('');
           },
           label: Text('Clear Results', style: Styles.appNormalWhite),
           icon: Icon(Icons.clear),
@@ -112,5 +155,12 @@ class _FindTabState extends State<FindTab> {
     );
   }
 
+  void _search(String value) {
+    if (value.length == 0) {
+      _bloc.serviceEventSink.add(ClearSearch());
+    } else {
+      _bloc.submitQuery(value);
+    }
+  }
 }
 
