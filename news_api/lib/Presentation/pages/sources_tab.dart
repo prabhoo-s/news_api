@@ -69,8 +69,7 @@ class _SourcesTabState extends State<SourcesTab> {
           );
         } else if (snapshot.hasError) {
           // If the server did not return a 200 OK response,
-          // then throw an exception.
-          throw Exception('Failed to get data!');
+          return Text("${snapshot.error}");
         }
         // By default, show a loading spinner.
         return SizedBox(

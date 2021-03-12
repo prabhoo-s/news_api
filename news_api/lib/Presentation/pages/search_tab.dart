@@ -14,12 +14,12 @@ class SearchTab extends StatefulWidget {
 }
 
 class _SearchTabState extends State<SearchTab> {
-  final _searchController = TextEditingController();
   final _bloc = SearchBLoC();
 
   @override
   void initState() {
     super.initState();
+
     _bloc.serviceEventSink.add(ClearSearch());
   }
 
@@ -31,17 +31,19 @@ class _SearchTabState extends State<SearchTab> {
           padding: const EdgeInsets.all(8.0),
           child: const Icon(
             CupertinoIcons.search,
-            color: CupertinoColors.black,
+            color: Styles.searchIconColor,
           ),
         ),
         placeholder: 'Search by news title',
+        placeholderStyle: Styles.appDisabledGray,
+        cursorColor: Styles.searchIconColor,
         style: Styles.appNormal,
         maxLines: 1,
         padding: const EdgeInsets.symmetric(horizontal: 6, vertical: 12),
         clearButtonMode: OverlayVisibilityMode.editing,
         decoration: new BoxDecoration(
             borderRadius: new BorderRadius.all(new Radius.circular(30)),
-            color: Colors.black12),
+            color: Styles.searchBackground),
         onChanged: (value) {
           _search(value);
         },
@@ -60,6 +62,7 @@ class _SearchTabState extends State<SearchTab> {
               : "About ${_results.length} results";
           return Container(
             child: Scaffold(
+              backgroundColor: Styles.scaffoldBackground,
               body: CustomScrollView(
                 keyboardDismissBehavior:
                     ScrollViewKeyboardDismissBehavior.onDrag,
@@ -122,8 +125,7 @@ class _SearchTabState extends State<SearchTab> {
           );
         } else if (snapshot.hasError) {
           // If the server did not return a 200 OK response,
-          // then throw an exception.
-          throw Exception('Failed to get data!');
+          return Text("${snapshot.error}");
         }
         // By default, show a loading spinner.
         return Center(

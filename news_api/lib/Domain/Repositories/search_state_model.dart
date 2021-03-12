@@ -25,7 +25,7 @@ class SearchStateModel {
 
   void _loadData() {
     _allNews.clear();
-    _allNews = SingletonStorage.instance.cachedTopHeadlines;
+    _allNews = SingletonStorage.instance.cachedTopHeadlines ?? [];
   }
 
   List<TopHeadlines> search(String searchTerms) {

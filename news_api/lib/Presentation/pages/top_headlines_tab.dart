@@ -3,10 +3,11 @@ import 'package:flutter/material.dart';
 import 'package:news_api/Data/Models/top_headlines_list.dart';
 import 'package:news_api/Domain/Repositories/singleton_storage.dart';
 import 'package:news_api/Presentation/bloc/bloc_events.dart';
+import 'package:news_api/Presentation/bloc/headlines_bloc.dart';
+import 'package:news_api/Presentation/widgets/top_headlines_tab_row.dart';
 import 'package:news_api/Styles.dart';
 
-import '../bloc/headlines_bloc.dart';
-import '../widgets/top_headlines_tab_row.dart';
+
 
 class TopHeadlinesTab extends StatefulWidget {
   @override
@@ -74,8 +75,7 @@ class _TopHeadlinesTabState extends State<TopHeadlinesTab> {
           );
         } else if (snapshot.hasError) {
           // If the server did not return a 200 OK response,
-          // then throw an exception.
-          throw Exception('Failed to get data!');
+          return Text("${snapshot.error}");
         }
         // By default, show a loading spinner.
         return SizedBox(
