@@ -38,7 +38,7 @@ class _SourcesTabState extends State<SourcesTab> {
                 CupertinoSliverNavigationBar(
                   largeTitle: Text('News Sources'),
                   trailing: CupertinoButton(
-                    child: Icon(Icons.refresh, size: 32.0),
+                    child: Icon(CupertinoIcons.refresh, size: 32.0),
                     onPressed: () {
                       _bloc.serviceEventSink.add(FetchSources());
                       _scrollToTop();

@@ -43,7 +43,7 @@ class _TopHeadlinesTabState extends State<TopHeadlinesTab> {
                 CupertinoSliverNavigationBar(
                   largeTitle: Text('Top Headlines'),
                   trailing: CupertinoButton(
-                    child: Icon(Icons.refresh, size: 32.0),
+                    child: Icon(CupertinoIcons.refresh, size: 32.0),
                     onPressed: () {
                       _bloc.serviceEventSink.add(FetchTopHeadlines());
                       _scrollToTop();
@@ -56,7 +56,7 @@ class _TopHeadlinesTabState extends State<TopHeadlinesTab> {
                   minimum: const EdgeInsets.only(top: 8),
                   sliver: SliverList(
                     delegate: SliverChildBuilderDelegate(
-                          (context, index) {
+                      (context, index) {
                         if (index < products.length) {
                           return TopHeadlinesRowItem(
                             article: products[index],

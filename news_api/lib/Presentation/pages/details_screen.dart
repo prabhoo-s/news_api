@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:news_api/Data/Models/top_headlines.dart';
 import 'package:news_api/Styles.dart';
 import 'package:url_launcher/url_launcher.dart';
+import 'package:intl/intl.dart';
 
 class DetailsScreen extends StatelessWidget {
   final TopHeadlines news;
@@ -11,10 +12,17 @@ class DetailsScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    String _publishedDate =
+        DateFormat.yMMMEd().format(DateTime.parse(news.publishedAt));
+    String _author =
+        news.author.length > 10 ? news.author.substring(0, 10) : news.author;
+
     return Scaffold(
       appBar: AppBar(
-        title:Text("${Uri.parse(news.url).host.toUpperCase()}",
-        style: Styles.appNormalWhite,),
+        title: Text(
+          "${Uri.parse(news.url).host.toUpperCase()}",
+          style: Styles.appNormalWhite,
+        ),
         actions: <Widget>[
           IconButton(
             icon: Icon(Icons.open_in_browser),
@@ -37,16 +45,6 @@ class DetailsScreen extends StatelessWidget {
                       image: NetworkImage(news.urlToImage), fit: BoxFit.cover),
                 ),
               ),
-              Positioned(
-                left: 8.0,
-                top: 60.0,
-                child: InkWell(
-                  onTap: () {
-                    Navigator.pop(context);
-                  },
-                  child: Icon(Icons.arrow_back, color: Colors.black),
-                ),
-              )
             ],
           ),
           Container(
@@ -56,11 +54,22 @@ class DetailsScreen extends StatelessWidget {
                 children: <Widget>[
                   Text(
                     news.title,
-                    style: TextStyle(fontSize: 24.0),
+                    style: Styles.appBold,
                   ),
-                  Text(
-                    news.author,
-                    style: TextStyle(fontSize: 18.0),
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceAround,
+                    children: [
+                      Icon(CupertinoIcons.pen),
+                      Text(
+                        _author,
+                        style: Styles.appItalicsSemiLight,
+                      ),
+                      Icon(CupertinoIcons.time),
+                      Text(
+                        '$_publishedDate',
+                        style: Styles.appItalicsSemiLight,
+                      ),
+                    ],
                   ),
                   Text(
                     news.description,

@@ -29,6 +29,8 @@ class TopHeadlinesRowItem extends StatelessWidget {
       ),
       child: GestureDetector(
         onTap: () {
+          FocusScope.of(context)
+              .requestFocus(FocusNode());
           Navigator.push(
               context,
               MaterialPageRoute(

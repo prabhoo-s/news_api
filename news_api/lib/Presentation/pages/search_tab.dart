@@ -25,131 +25,111 @@ class _SearchTabState extends State<SearchTab> {
 
   @override
   Widget build(BuildContext context) {
-    final row = SafeArea(
-      top: false,
-      bottom: false,
-      minimum: const EdgeInsets.only(
-        left: 16,
-        top: 8,
-        bottom: 8,
-        right: 8,
-      ),
-      child: Row(
-        children: <Widget>[
-          Expanded(
-            child: Padding(
-              // some padding
-              padding: EdgeInsets.only(top: 50.0, right: 0.0, left: 0.0),
-              child: Column(
-                mainAxisAlignment: MainAxisAlignment.start,
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: <Widget>[
-                  Padding(
-                    padding: const EdgeInsets.only(
-                        left: 0.0, right: 0.0, top: 0.0, bottom: 0.0),
-                    child: TextFormField(
-                      style: Styles.appNormal,
-                      controller: _searchController,
-                      onChanged: (value) {
-                        _search(value);
-                      },
-                      textInputAction: TextInputAction.done,
-                      decoration: InputDecoration(
-                        floatingLabelBehavior: FloatingLabelBehavior.never,
-                        filled: true,
-                        fillColor: Colors.grey[100],
-                        suffixIcon: _searchController.text.length > 0
-                            ? IconButton(
-                                icon: Icon(Icons.clear),
-                                onPressed: () {
-                                  setState(() {
-                                    FocusScope.of(context)
-                                        .requestFocus(FocusNode());
-                                    _searchController.clear();
-                                  });
-                                })
-                            : IconButton(
-                                icon: Icon(Icons.search),
-                                onPressed: () {
-                                  setState(() {
-                                    FocusScope.of(context)
-                                        .requestFocus(FocusNode());
-                                    _search(_searchController.text);
-                                  });
-                                }),
-                        enabledBorder: OutlineInputBorder(
-                            borderSide: new BorderSide(
-                                color: Colors.grey.withOpacity(0.3)),
-                            borderRadius: BorderRadius.circular(30.0)),
-                        focusedBorder: OutlineInputBorder(
-                            borderSide: new BorderSide(
-                                color: Colors.grey.withOpacity(0.3)),
-                            borderRadius: BorderRadius.circular(30.0)),
-                        contentPadding:
-                            EdgeInsets.only(left: 15.0, right: 10.0),
-                        labelText: "Search by news title",
-                        hintStyle: Styles.appSemiLight,
-                        labelStyle: Styles.appDisabledGray,
+    Widget _searchField() {
+      return CupertinoTextField(
+        prefix: Padding(
+          padding: const EdgeInsets.all(8.0),
+          child: const Icon(
+            CupertinoIcons.search,
+            color: CupertinoColors.black,
+          ),
+        ),
+        placeholder: 'Search by news title',
+        style: Styles.appNormal,
+        maxLines: 1,
+        padding: const EdgeInsets.symmetric(horizontal: 6, vertical: 12),
+        clearButtonMode: OverlayVisibilityMode.editing,
+        decoration: new BoxDecoration(
+            borderRadius: new BorderRadius.all(new Radius.circular(30)),
+            color: Colors.black12),
+        onChanged: (value) {
+          _search(value);
+        },
+        autocorrect: false,
+      );
+    }
+
+    return StreamBuilder(
+      stream: _bloc.response,
+      builder:
+          (BuildContext context, AsyncSnapshot<List<TopHeadlines>> snapshot) {
+        if (snapshot.hasData) {
+          final _results = snapshot.data ?? [];
+          final _resultsText = _results.length == 0
+              ? "No results found!"
+              : "About ${_results.length} results";
+          return Container(
+            child: Scaffold(
+              body: CustomScrollView(
+                keyboardDismissBehavior:
+                    ScrollViewKeyboardDismissBehavior.onDrag,
+                semanticChildCount: _results.length,
+                slivers: <Widget>[
+                  CupertinoSliverNavigationBar(
+                    largeTitle: Text('Search'),
+                  ),
+                  SliverPersistentHeader(
+                    delegate: _SliverSearchBarDelegate(
+                      child: Container(
+                        child: _searchField(),
                       ),
-                      autocorrect: false,
                     ),
                   ),
+                  SliverSafeArea(
+                    top: false,
+                    minimum: const EdgeInsets.only(top: 8),
+                    sliver: SliverList(
+                      delegate: SliverChildBuilderDelegate(
+                        (context, index) {
+                          if (index < _results.length) {
+                            return TopHeadlinesRowItem(
+                              article: _results[index],
+                              lastItem: index == _results.length - 1,
+                            );
+                          }
+
+                          return null;
+                        },
+                      ),
+                    ),
+                  )
                 ],
               ),
+              bottomNavigationBar: BottomAppBar(
+                shape: CircularNotchedRectangle(),
+                child: Padding(
+                  padding: const EdgeInsets.all(8.0),
+                  child: Text(
+                    _resultsText,
+                    style: Styles.appNormalWhite,
+                  ),
+                ),
+                color: Colors.blue,
+                notchMargin: 5.0,
+              ),
+              floatingActionButtonLocation:
+                  FloatingActionButtonLocation.endDocked,
+              floatingActionButton: FloatingActionButton(
+                onPressed: () {
+                  _search('');
+                },
+                backgroundColor: Colors.orange[300],
+                foregroundColor: Colors.black87,
+                child: Icon(CupertinoIcons.clear),
+                elevation: 2.0,
+              ),
             ),
-          ),
-        ],
-      ),
-    );
-
-    return Scaffold(
-      resizeToAvoidBottomInset: false,
-      backgroundColor: Styles.scaffoldBackground,
-      body: Column(
-        children: <Widget>[
-          row,
-          Expanded(
-            child: StreamBuilder(
-              stream: _bloc.response,
-              builder: (BuildContext context,
-                  AsyncSnapshot<List<TopHeadlines>> snapshot) {
-                final products = snapshot.data ?? [];
-                return CustomScrollView(
-                  semanticChildCount: products.length,
-                  slivers: <Widget>[
-                    SliverSafeArea(
-                      top: false,
-                      minimum: const EdgeInsets.only(top: 8),
-                      sliver: SliverList(
-                        delegate: SliverChildBuilderDelegate(
-                          (context, index) {
-                            if (index < products.length) {
-                              return TopHeadlinesRowItem(
-                                article: products[index],
-                                lastItem: index == products.length - 1,
-                              );
-                            }
-                            return null;
-                          },
-                        ),
-                      ),
-                    )
-                  ],
-                );
-              },
-            ),
-          ),
-        ],
-      ),
-      floatingActionButtonLocation: FloatingActionButtonLocation.endDocked,
-      floatingActionButton: FloatingActionButton.extended(
-        backgroundColor: Colors.blue,
-        onPressed: () {
-          _search('');
-        },
-        label: Text('Clear Results', style: Styles.appNormalWhite),
-        icon: Icon(Icons.clear),
-      ),
+          );
+        } else if (snapshot.hasError) {
+          // If the server did not return a 200 OK response,
+          // then throw an exception.
+          throw Exception('Failed to get data!');
+        }
+        // By default, show a loading spinner.
+        return Center(
+          child: CircularProgressIndicator(),
+        );
+      },
     );
   }
 
@@ -166,5 +146,36 @@ class _SearchTabState extends State<SearchTab> {
     // TODO: implement dispose
     super.dispose();
     _bloc.dispose();
+  }
+}
+
+class _SliverSearchBarDelegate extends SliverPersistentHeaderDelegate {
+  _SliverSearchBarDelegate({
+    required this.child,
+    this.minHeight = 56.0,
+    this.maxHeight = 56.0,
+  });
+
+  final Widget child;
+  final double minHeight;
+  final double maxHeight;
+
+  @override
+  double get minExtent => minHeight;
+
+  @override
+  double get maxExtent => maxHeight;
+
+  @override
+  Widget build(
+      BuildContext context, double shrinkOffset, bool overlapsContent) {
+    return SizedBox.expand(child: child);
+  }
+
+  @override
+  bool shouldRebuild(_SliverSearchBarDelegate oldDelegate) {
+    return maxHeight != oldDelegate.maxHeight ||
+        minHeight != oldDelegate.minHeight ||
+        child != oldDelegate.child;
   }
 }
