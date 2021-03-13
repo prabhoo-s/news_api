@@ -34,11 +34,13 @@ class MockClient extends _i1.Mock implements _i5.Client {
       (super.noSuchMethod(Invocation.method(#head, [url], {#headers: headers}),
               returnValue: Future.value(_FakeResponse()))
           as _i6.Future<_i2.Response>);
+
   @override
   _i6.Future<_i2.Response> get(Uri? url, {Map<String, String>? headers}) =>
       (super.noSuchMethod(Invocation.method(#get, [url], {#headers: headers}),
               returnValue: Future.value(_FakeResponse()))
           as _i6.Future<_i2.Response>);
+
   @override
   _i6.Future<_i2.Response> post(Uri? url,
           {Map<String, String>? headers,
@@ -49,6 +51,7 @@ class MockClient extends _i1.Mock implements _i5.Client {
                   {#headers: headers, #body: body, #encoding: encoding}),
               returnValue: Future.value(_FakeResponse()))
           as _i6.Future<_i2.Response>);
+
   @override
   _i6.Future<_i2.Response> put(Uri? url,
           {Map<String, String>? headers,
@@ -59,6 +62,7 @@ class MockClient extends _i1.Mock implements _i5.Client {
                   {#headers: headers, #body: body, #encoding: encoding}),
               returnValue: Future.value(_FakeResponse()))
           as _i6.Future<_i2.Response>);
+
   @override
   _i6.Future<_i2.Response> patch(Uri? url,
           {Map<String, String>? headers,
@@ -69,6 +73,7 @@ class MockClient extends _i1.Mock implements _i5.Client {
                   {#headers: headers, #body: body, #encoding: encoding}),
               returnValue: Future.value(_FakeResponse()))
           as _i6.Future<_i2.Response>);
+
   @override
   _i6.Future<_i2.Response> delete(Uri? url,
           {Map<String, String>? headers,
@@ -79,10 +84,12 @@ class MockClient extends _i1.Mock implements _i5.Client {
                   {#headers: headers, #body: body, #encoding: encoding}),
               returnValue: Future.value(_FakeResponse()))
           as _i6.Future<_i2.Response>);
+
   @override
   _i6.Future<String> read(Uri? url, {Map<String, String>? headers}) =>
       (super.noSuchMethod(Invocation.method(#read, [url], {#headers: headers}),
           returnValue: Future.value('')) as _i6.Future<String>);
+
   @override
   _i6.Future<_i3.Uint8List> readBytes(Uri? url,
           {Map<String, String>? headers}) =>
@@ -90,6 +97,7 @@ class MockClient extends _i1.Mock implements _i5.Client {
               Invocation.method(#readBytes, [url], {#headers: headers}),
               returnValue: Future.value(_FakeUint8List()))
           as _i6.Future<_i3.Uint8List>);
+
   @override
   _i6.Future<_i4.StreamedResponse> send(_i8.BaseRequest? request) =>
       (super.noSuchMethod(Invocation.method(#send, [request]),
@@ -109,21 +117,26 @@ class MockResponse extends _i1.Mock implements _i2.Response {
   _i3.Uint8List get bodyBytes =>
       (super.noSuchMethod(Invocation.getter(#bodyBytes),
           returnValue: _FakeUint8List()) as _i3.Uint8List);
+
   @override
   String get body =>
       (super.noSuchMethod(Invocation.getter(#body), returnValue: '') as String);
+
   @override
   int get statusCode =>
       (super.noSuchMethod(Invocation.getter(#statusCode), returnValue: 0)
           as int);
+
   @override
   Map<String, String> get headers =>
       (super.noSuchMethod(Invocation.getter(#headers),
           returnValue: <String, String>{}) as Map<String, String>);
+
   @override
   bool get isRedirect =>
       (super.noSuchMethod(Invocation.getter(#isRedirect), returnValue: false)
           as bool);
+
   @override
   bool get persistentConnection =>
       (super.noSuchMethod(Invocation.getter(#persistentConnection),

@@ -6,7 +6,7 @@ import 'package:news_api/Domain/Repositories/api_repository.dart';
 import 'bloc_events.dart';
 
 class SearchBLoC {
-  TopHeadlinesList _response = TopHeadlinesList([], "");
+  TopHeadlinesList _response = TopHeadlinesList([]);
   final _stateController = StreamController<TopHeadlinesList>();
   final _api = APIRepository();
 
@@ -40,7 +40,7 @@ class SearchBLoC {
   }
 
   void _clear() async {
-    _response = TopHeadlinesList([], "");
+    _response = TopHeadlinesList([]);
     _inResponse.add(_response);
   }
 }

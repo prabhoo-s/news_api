@@ -6,7 +6,7 @@ import 'package:news_api/Domain/Repositories/api_repository.dart';
 import 'bloc_events.dart';
 
 class TopHeadlinesBLoC {
-  TopHeadlinesList _response = TopHeadlinesList([], "");
+  TopHeadlinesList _response = TopHeadlinesList([]);
   final _stateController = StreamController<TopHeadlinesList>();
   final _api = APIRepository();
 
