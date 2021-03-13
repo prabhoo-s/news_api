@@ -55,8 +55,8 @@ class _SearchTabState extends State<SearchTab> {
       stream: _bloc.response,
       builder:
           (BuildContext context, AsyncSnapshot<TopHeadlinesList> snapshot) {
-        if (snapshot.hasData) {
-          final _results = snapshot.data!.articles ?? [];
+        if (snapshot.hasData && snapshot.data != null) {
+          final _results = snapshot.data!.articles;
           final _resultsText = _results.length == 0
               ? "No results found!"
               : "About ${_results.length} results";
