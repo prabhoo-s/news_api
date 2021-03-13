@@ -8,7 +8,7 @@ import 'bloc_events.dart';
 class SourcesBLoC {
   SourcesList _response = SourcesList([]);
   final _stateController = StreamController<SourcesList>();
-  final _api = APIRepository();
+  var api = APIRepository();
 
   StreamSink<SourcesList> get _inResponse => _stateController.sink;
 
@@ -34,7 +34,7 @@ class SourcesBLoC {
   }
 
   _getSources() async {
-    _response = await _api.fetchSources();
+    _response = await api.fetchSources();
     _inResponse.add(_response);
   }
 }

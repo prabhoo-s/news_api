@@ -1,5 +1,4 @@
 import 'dart:async';
-
 import 'package:news_api/Data/Models/top_headlines_list.dart';
 import 'package:news_api/Domain/Repositories/api_repository.dart';
 
@@ -8,7 +7,7 @@ import 'bloc_events.dart';
 class TopHeadlinesBLoC {
   TopHeadlinesList _response = TopHeadlinesList([]);
   final _stateController = StreamController<TopHeadlinesList>();
-  final _api = APIRepository();
+  var api = APIRepository();
 
   StreamSink<TopHeadlinesList> get _inResponse => _stateController.sink;
 
@@ -34,7 +33,7 @@ class TopHeadlinesBLoC {
   }
 
   _getTopHeadlines() async {
-    _response = await _api.fetchTopHeadlines();
+    _response = await api.fetchTopHeadlines();
     _inResponse.add(_response);
   }
 }

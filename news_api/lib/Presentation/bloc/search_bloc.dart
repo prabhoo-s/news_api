@@ -8,7 +8,7 @@ import 'bloc_events.dart';
 class SearchBLoC {
   TopHeadlinesList _response = TopHeadlinesList([]);
   final _stateController = StreamController<TopHeadlinesList>();
-  final _api = APIRepository();
+  final api = APIRepository();
 
   StreamSink<TopHeadlinesList> get _inResponse => _stateController.sink;
 
@@ -35,7 +35,7 @@ class SearchBLoC {
   }
 
   void submitQuery(String query) async {
-    _response = await _api.search(query);
+    _response = await api.search(query);
     _inResponse.add(_response);
   }
 

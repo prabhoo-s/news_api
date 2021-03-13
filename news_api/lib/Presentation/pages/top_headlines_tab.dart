@@ -31,12 +31,12 @@ class _TopHeadlinesTabState extends State<TopHeadlinesTab> {
       stream: _bloc.response,
       builder:
           (BuildContext context, AsyncSnapshot<TopHeadlinesList> snapshot) {
-        if (snapshot.hasData) {
-          final products = snapshot.data!.articles;
+        if (snapshot.hasData && snapshot.data != null) {
+          final headlines = snapshot.data!.articles;
           return Container(
             color: Styles.scaffoldBackground,
             child: CustomScrollView(
-              semanticChildCount: products.length,
+              semanticChildCount: headlines.length,
               controller: scrollController,
               slivers: <Widget>[
                 CupertinoSliverNavigationBar(
@@ -56,10 +56,10 @@ class _TopHeadlinesTabState extends State<TopHeadlinesTab> {
                   sliver: SliverList(
                     delegate: SliverChildBuilderDelegate(
                       (context, index) {
-                        if (index < products.length) {
+                        if (index < headlines.length) {
                           return TopHeadlinesRowItem(
-                            article: products[index],
-                            lastItem: index == products.length - 1,
+                            article: headlines[index],
+                            lastItem: index == headlines.length - 1,
                           );
                         }
 

@@ -1,18 +1,14 @@
 // http_server_test.dart:
 import 'dart:convert';
 
-import 'package:mockito/annotations.dart';
 import 'package:flutter_test/flutter_test.dart';
-import 'package:http/http.dart' as http;
 import 'package:mockito/mockito.dart';
 import 'package:news_api/Data/Models/sources_list.dart';
 import 'package:news_api/Data/Models/top_headlines_list.dart';
 import 'package:news_api/Data/Repositories/api_provider.dart';
 
-import 'api_provider_test.mocks.dart';
+import 'TestImports/api_provider_test.mocks.dart';
 
-@GenerateMocks([http.Client])
-@GenerateMocks([http.Response])
 void main() {
   group('Testing API Provider', () {
     test('test Sources tab: SourcesList provider', () async {
