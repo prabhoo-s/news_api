@@ -6,7 +6,7 @@ import 'package:news_api/Domain/Repositories/api_repository.dart';
 import 'bloc_events.dart';
 
 class SourcesBLoC {
-  SourcesList _response = SourcesList([], "");
+  SourcesList _response = SourcesList([]);
   final _stateController = StreamController<SourcesList>();
   final _api = APIRepository();
 

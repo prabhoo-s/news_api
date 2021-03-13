@@ -1,7 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:news_api/Data/Models/top_headlines_list.dart';
-import 'package:news_api/Domain/Repositories/singleton_storage.dart';
 import 'package:news_api/Presentation/bloc/bloc_events.dart';
 import 'package:news_api/Presentation/bloc/headlines_bloc.dart';
 import 'package:news_api/Presentation/widgets/top_headlines_tab_row.dart';
@@ -34,7 +33,6 @@ class _TopHeadlinesTabState extends State<TopHeadlinesTab> {
           (BuildContext context, AsyncSnapshot<TopHeadlinesList> snapshot) {
         if (snapshot.hasData) {
           final products = snapshot.data!.articles;
-          SingletonStorage.instance.cachedTopHeadlines = products;
           return Container(
             color: Styles.scaffoldBackground,
             child: CustomScrollView(

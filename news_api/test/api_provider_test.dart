@@ -6,6 +6,7 @@ import 'package:flutter_test/flutter_test.dart';
 import 'package:http/http.dart' as http;
 import 'package:mockito/mockito.dart';
 import 'package:news_api/Data/Models/sources_list.dart';
+import 'package:news_api/Data/Models/top_headlines_list.dart';
 import 'package:news_api/Data/Repositories/api_provider.dart';
 
 import 'api_provider_test.mocks.dart';
@@ -76,7 +77,7 @@ void main() {
         .thenAnswer((_) async => mockResponse);
 
     expect(200, mockResponse.statusCode);
-    expect(await api.fetchTopHeadlines(), isA<SourcesList>());
+    expect(await api.fetchTopHeadlines(), isA<TopHeadlinesList>());
   });
 
 }

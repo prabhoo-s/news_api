@@ -35,4 +35,20 @@ class APIProvider {
       throw Exception('Failed to load data from API');
     }
   }
+
+  Future<TopHeadlinesList> search(String value) async {
+    var params = {
+      "apiKey": "6b66e2690d8d45cb8f9da3ef2d500931",
+      "q" : value,
+      "sortBy": "popularity"};
+    final response = await http.get(Uri.https('newsapi.org', 'v2/everything', params));
+
+    if (response.statusCode == 200) {
+      // If the server did return a 200 OK response,
+      // then parse the JSON.
+      return TopHeadlinesList.fromJson(jsonDecode(response.body));
+    } else {
+      throw Exception('Failed to load data from API');
+    }
+  }
 }

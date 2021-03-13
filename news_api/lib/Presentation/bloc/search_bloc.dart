@@ -1,18 +1,18 @@
 import 'dart:async';
 
-import 'package:news_api/Data/Models/top_headlines.dart';
-import 'package:news_api/Domain/Repositories/search_state_model.dart';
+import 'package:news_api/Data/Models/top_headlines_list.dart';
+import 'package:news_api/Domain/Repositories/api_repository.dart';
 
 import 'bloc_events.dart';
 
 class SearchBLoC {
-  List<TopHeadlines> _response = <TopHeadlines>[];
-  final SearchStateModel helper = SearchStateModel();
-  final _stateController = StreamController<List<TopHeadlines>>();
+  TopHeadlinesList _response = TopHeadlinesList([], "");
+  final _stateController = StreamController<TopHeadlinesList>();
+  final _api = APIRepository();
 
-  StreamSink<List<TopHeadlines>> get _inResponse => _stateController.sink;
+  StreamSink<TopHeadlinesList> get _inResponse => _stateController.sink;
 
-  Stream<List<TopHeadlines>> get response => _stateController.stream;
+  Stream<TopHeadlinesList> get response => _stateController.stream;
 
   final _eventController = StreamController<BLoCEvents>();
 
@@ -35,12 +35,12 @@ class SearchBLoC {
   }
 
   void submitQuery(String query) async {
-    _response = helper.search(query);
+    _response = await _api.search(query);
     _inResponse.add(_response);
   }
 
   void _clear() async {
-    _response = helper.clearSearch();
+    _response = TopHeadlinesList([], "");
     _inResponse.add(_response);
   }
 }

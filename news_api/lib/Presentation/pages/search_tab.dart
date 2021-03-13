@@ -1,6 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:news_api/Data/Models/top_headlines.dart';
+import 'package:news_api/Data/Models/top_headlines_list.dart';
 import 'package:news_api/Presentation/bloc/bloc_events.dart';
 import 'package:news_api/Presentation/bloc/search_bloc.dart';
 import 'package:news_api/Presentation/widgets/top_headlines_tab_row.dart';
@@ -54,9 +54,9 @@ class _SearchTabState extends State<SearchTab> {
     return StreamBuilder(
       stream: _bloc.response,
       builder:
-          (BuildContext context, AsyncSnapshot<List<TopHeadlines>> snapshot) {
+          (BuildContext context, AsyncSnapshot<TopHeadlinesList> snapshot) {
         if (snapshot.hasData) {
-          final _results = snapshot.data ?? [];
+          final _results = snapshot.data!.articles ?? [];
           final _resultsText = _results.length == 0
               ? "No results found!"
               : "About ${_results.length} results";

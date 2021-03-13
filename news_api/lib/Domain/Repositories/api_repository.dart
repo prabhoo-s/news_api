@@ -7,6 +7,7 @@ class APIRepository {
 
   Future<SourcesList> fetchSources() => apiProvider.fetchSources();
   Future<TopHeadlinesList> fetchTopHeadlines() => apiProvider.fetchTopHeadlines();
+  Future<TopHeadlinesList> search(String searchString) => apiProvider.search(searchString);
 }
 
 final apiRepository = APIRepository();
