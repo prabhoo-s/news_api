@@ -2,16 +2,11 @@ import 'sources.dart';
 
 class SourcesList {
   final List<Sources> sources;
-  final String status;
 
-  SourcesList(this.sources, this.status);
+  SourcesList(this.sources);
 
   SourcesList.fromJson(Map<String, dynamic> json)
       : sources =
-  (json["sources"] as List).map((i) => new Sources.fromJson(i)).toList(),
-        status = json["status"];
+  (json["sources"] as List).map((i) => new Sources.fromJson(i)).toList();
 
-  SourcesList.withError(String status)
-      : sources = [],
-        status = status;
 }

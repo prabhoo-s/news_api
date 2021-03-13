@@ -11,8 +11,6 @@ class APIProvider {
     "country": "us",
   };
 
-  String makeApiUrl(String path) => 'http://newsapi.org/v2/$path';
-
   Future<SourcesList> fetchSources() async {
     final response = await http
         .get(Uri.https('newsapi.org', 'v2/sources', _queryParameters));
