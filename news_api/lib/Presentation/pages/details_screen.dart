@@ -1,6 +1,8 @@
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:news_api/Data/Models/top_headlines.dart';
+import 'package:news_api/Presentation/widgets/LoadingWidget.dart';
 import 'package:news_api/Styles.dart';
 import 'package:url_launcher/url_launcher.dart';
 import 'package:intl/intl.dart';
@@ -38,11 +40,24 @@ class DetailsScreen extends StatelessWidget {
         children: <Widget>[
           Stack(
             children: <Widget>[
-              Container(
-                height: MediaQuery.of(context).size.height * 0.3,
-                decoration: BoxDecoration(
-                  image: DecorationImage(
-                      image: NetworkImage(news.urlToImage), fit: BoxFit.cover),
+              Hero(
+                tag: news.urlToImage,
+                child: CachedNetworkImage(
+                  imageUrl: news.urlToImage,
+                  placeholder: (context, url) => Container(
+                    height: MediaQuery.of(context).size.height * 0.3,
+                    width: MediaQuery.of(context).size.width,
+                    child: LoadingWidget(),
+                  ),
+                  errorWidget: (context, url, error) => Image.asset(
+                    'assets/images/place.png',
+                    fit: BoxFit.cover,
+                    height: MediaQuery.of(context).size.height * 0.3,
+                    width: MediaQuery.of(context).size.width,
+                  ),
+                  fit: BoxFit.cover,
+                  height: MediaQuery.of(context).size.height * 0.3,
+                  width: MediaQuery.of(context).size.width,
                 ),
               ),
             ],
@@ -70,6 +85,9 @@ class DetailsScreen extends StatelessWidget {
                         style: Styles.appItalicsSemiLight,
                       ),
                     ],
+                  ),
+                  Divider(
+                    color: Styles.searchCursorColor,
                   ),
                   Text(
                     news.description,

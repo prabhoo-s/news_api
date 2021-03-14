@@ -19,7 +19,7 @@ class THTabRowText extends StatelessWidget {
             article.title,
             style: Styles.appNormal,
           ),
-          const Padding(padding: EdgeInsets.only(top: 8)),
+          SizedBox(height: 5.0),
           Text(
             'By ${article.author}',
             overflow: TextOverflow.ellipsis,

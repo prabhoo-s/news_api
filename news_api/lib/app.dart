@@ -1,7 +1,8 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:news_api/Presentation/pages/landing_screen.dart';
+import 'package:news_api/Presentation/pages/splash_screen.dart';
+import 'package:news_api/Utils/Constants.dart';
 
 class NewsApiApp extends StatelessWidget {
   @override
@@ -14,8 +15,8 @@ class NewsApiApp extends StatelessWidget {
       theme: const CupertinoThemeData(brightness: Brightness.light),
       // Hide the debug banner
       debugShowCheckedModeBanner: false,
-      title: 'News API',
-      home: LandingScreen(),
+      title: Constants.appName,
+      home: SplashScreen(),
       localizationsDelegates: [
         DefaultMaterialLocalizations.delegate,
         DefaultCupertinoLocalizations.delegate,
