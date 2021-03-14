@@ -2,7 +2,7 @@ import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:news_api/Data/Models/top_headlines.dart';
-import 'package:news_api/Presentation/widgets/LoadingWidget.dart';
+import 'package:news_api/Presentation/widgets/loading_widget.dart';
 import 'package:news_api/Styles.dart';
 import 'package:url_launcher/url_launcher.dart';
 import 'package:intl/intl.dart';

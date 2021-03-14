@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:news_api/Data/Models/sources_list.dart';
 import 'package:news_api/Presentation/bloc/bloc_events.dart';
 import 'package:news_api/Presentation/bloc/sources_bloc.dart';
-import 'package:news_api/Presentation/widgets/LoadingWidget.dart';
+import 'package:news_api/Presentation/widgets/loading_widget.dart';
 import 'package:news_api/Presentation/widgets/sources_tab_row.dart';
 import 'package:news_api/Styles.dart';
 
@@ -28,7 +28,7 @@ class _SourcesTabState extends State<SourcesTab> {
     return StreamBuilder(
       stream: _bloc.response,
       builder: (BuildContext context, AsyncSnapshot<SourcesList> snapshot) {
-        if (snapshot.hasData) {
+        if (snapshot.hasData && snapshot.data != null) {
           final products = snapshot.data!.sources;
           return Container(
             color: Styles.scaffoldBackground,

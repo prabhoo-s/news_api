@@ -2,7 +2,7 @@ import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:news_api/Data/Models/top_headlines.dart';
-import 'package:news_api/Presentation/widgets/LoadingWidget.dart';
+import 'package:news_api/Presentation/widgets/loading_widget.dart';
 
 class THTabRowImage extends StatelessWidget {
   final TopHeadlines article;
