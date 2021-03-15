@@ -7,23 +7,24 @@
 
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
+import 'package:news_api/Presentation/pages/splash_screen.dart';
+import 'package:news_api/Utils/Constants.dart';
 import 'package:news_api/app.dart';
 
 void main() {
-  testWidgets('Counter increments smoke test', (WidgetTester tester) async {
-    // Build our app and trigger a frame.
-    await tester.pumpWidget(NewsApiApp());
+  Widget createWidgetForTesting({required Widget child}){
+    return MaterialApp(
+      home: child,
+    );
+  }
 
-    // Verify that our counter starts at 0.
-    expect(find.text('0'), findsOneWidget);
-    expect(find.text('1'), findsNothing);
+  testWidgets("Testing Splash screen", (WidgetTester tester) async {
+    await tester.runAsync(() async {
+      await tester.pumpWidget(NewsApiApp());
 
-    // Tap the '+' icon and trigger a frame.
-    await tester.tap(find.byIcon(Icons.add));
-    await tester.pump();
-
-    // Verify that our counter has incremented.
-    expect(find.text('0'), findsNothing);
-    expect(find.text('1'), findsOneWidget);
+      expect(find.byType(SplashScreen), findsOneWidget);
+      final titleFinder = find.text(Constants.appName);
+      expect(titleFinder, findsOneWidget);
+    });
   });
 }
