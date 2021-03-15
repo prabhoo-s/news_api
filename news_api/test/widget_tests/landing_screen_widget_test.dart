@@ -5,7 +5,7 @@ import 'package:news_api/Presentation/bloc/headlines_bloc.dart';
 import 'package:news_api/Presentation/pages/landing_screen.dart';
 import 'package:news_api/Utils/dependency_injector.dart';
 
-import 'MockDatabase/MockCarDataProvider.dart';
+import '../MockDatabase/MockDataProvider.dart';
 
 void main() {
   setupLocator();
@@ -17,7 +17,7 @@ void main() {
     );
   }
 
-  testWidgets("Testing Landing screen", (WidgetTester tester) async {
+  testWidgets("Testing Landing screen which has 3 tabs at the bottom", (WidgetTester tester) async {
     await tester.runAsync(() async {
       carsListBloc.injectDataProviderForTest(MockDatasource());
       carsListBloc.serviceEventSink.add(FetchTopHeadlines());

@@ -5,35 +5,32 @@ import 'package:news_api/Data/Models/top_headlines.dart';
 import 'package:news_api/Data/Models/top_headlines_list.dart';
 import 'package:news_api/Presentation/bloc/bloc_events.dart';
 import 'package:news_api/Presentation/bloc/headlines_bloc.dart';
+import 'package:news_api/Utils/dependency_injector.dart';
 
-import 'TestImports/headlines_bloc_test.mocks.dart';
+import '../TestImports/headlines_bloc_test.mocks.dart';
 //@GenerateMocks([APIRepository])
 
 void main() {
+  setupLocator();
   late MockAPIRepository mockAPIRepository;
-  late TopHeadlinesBLoC bloc;
+  var _bloc = locator<TopHeadlinesBLoC>();
 
   setUp(() async {
     mockAPIRepository = MockAPIRepository();
-    bloc = TopHeadlinesBLoC();
-  });
-
-  tearDown(() {
-    bloc.dispose();
   });
 
   group('TopHeadlinesBLoC Testing', () {
     final th = TopHeadlinesList(
         [TopHeadlines("author", "title", "desc", "url", "urlthumb", "date")]);
 
-    test('FetchTopHeadlines Event Posting and steam retrial', () {
+    test('FetchTopHeadlines Event Posting and steam retrieval', () {
       when(mockAPIRepository.fetchTopHeadlines()).thenAnswer((_) async => th);
 
-      bloc.api = mockAPIRepository;
+      _bloc.api = mockAPIRepository;
 
-      bloc.serviceEventSink.add(FetchTopHeadlines());
+      _bloc.serviceEventSink.add(FetchTopHeadlines());
 
-      expectLater(bloc.response, emits(isA<TopHeadlinesList>()));
+      expectLater(_bloc.response, emits(isA<TopHeadlinesList>()));
     });
   });
 }

@@ -4,20 +4,23 @@ import 'package:news_api/Data/Models/sources.dart';
 import 'package:news_api/Data/Models/sources_list.dart';
 import 'package:news_api/Presentation/bloc/bloc_events.dart';
 import 'package:news_api/Presentation/bloc/sources_bloc.dart';
+import 'package:news_api/Utils/dependency_injector.dart';
 
-import 'TestImports/headlines_bloc_test.mocks.dart';
+import '../TestImports/headlines_bloc_test.mocks.dart';
 
 void main() {
+  setupLocator();
   late MockAPIRepository mockAPIRepository;
-  late SourcesBLoC bloc;
+  var _bloc = locator<SourcesBLoC>();
+
 
   setUp(() async {
     mockAPIRepository = MockAPIRepository();
-    bloc = SourcesBLoC();
+    _bloc = SourcesBLoC();
   });
 
   tearDown(() {
-    bloc.dispose();
+    _bloc.dispose();
   });
 
   group('SourcesBLoC Testing', () {
@@ -28,11 +31,11 @@ void main() {
       when(mockAPIRepository.fetchSources())
           .thenAnswer((_) async => sourcesObject);
 
-      bloc.api = mockAPIRepository;
+      _bloc.api = mockAPIRepository;
 
-      bloc.serviceEventSink.add(FetchSources());
+      _bloc.serviceEventSink.add(FetchSources());
 
-      expectLater(bloc.response, emits(isA<SourcesList>()));
+      expectLater(_bloc.response, emits(isA<SourcesList>()));
     });
   });
 }

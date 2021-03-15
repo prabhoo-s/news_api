@@ -3,20 +3,17 @@ import 'package:flutter_test/flutter_test.dart';
 import 'package:news_api/Data/Models/top_headlines.dart';
 import 'package:news_api/Data/Models/top_headlines_list.dart';
 import 'package:news_api/Presentation/bloc/search_bloc.dart';
+import 'package:news_api/Utils/dependency_injector.dart';
 
-import 'TestImports/headlines_bloc_test.mocks.dart';
+import '../TestImports/headlines_bloc_test.mocks.dart';
 
 void main() {
+  setupLocator();
   late MockAPIRepository mockAPIRepository;
-  late SearchBLoC bloc;
+  var _bloc = locator<SearchBLoC>();
 
   setUp(() async {
     mockAPIRepository = MockAPIRepository();
-    bloc = SearchBLoC();
-  });
-
-  tearDown(() {
-    bloc.dispose();
   });
 
   group('SearchBLoC Testing', () {
@@ -26,9 +23,9 @@ void main() {
     test('FetchTopHeadlines Event Posting and steam retrial', () {
       when(mockAPIRepository.search('text')).thenAnswer((_) async => th);
 
-      bloc.submitQuery('query');
+      _bloc.submitQuery('query');
 
-      expectLater(bloc.response, emits(isA<TopHeadlinesList>()));
+      expectLater(_bloc.response, emits(isA<TopHeadlinesList>()));
     });
   });
 }

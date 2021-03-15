@@ -5,19 +5,12 @@
 // gestures. You can also use WidgetTester to find child widgets in the widget
 // tree, read text, and verify that the values of widget properties are correct.
 
-import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:news_api/Presentation/pages/splash_screen.dart';
 import 'package:news_api/Utils/Constants.dart';
 import 'package:news_api/app.dart';
 
 void main() {
-  Widget createWidgetForTesting({required Widget child}){
-    return MaterialApp(
-      home: child,
-    );
-  }
-
   testWidgets("Testing Splash screen", (WidgetTester tester) async {
     await tester.runAsync(() async {
       await tester.pumpWidget(NewsApiApp());
