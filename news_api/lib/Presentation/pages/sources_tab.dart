@@ -6,6 +6,7 @@ import 'package:news_api/Presentation/bloc/sources_bloc.dart';
 import 'package:news_api/Presentation/widgets/loading_widget.dart';
 import 'package:news_api/Presentation/widgets/sources_tab_row.dart';
 import 'package:news_api/Styles.dart';
+import 'package:news_api/Utils/dependency_injector.dart';
 
 class SourcesTab extends StatefulWidget {
   @override
@@ -13,7 +14,7 @@ class SourcesTab extends StatefulWidget {
 }
 
 class _SourcesTabState extends State<SourcesTab> {
-  final _bloc = SourcesBLoC();
+  var _bloc = locator<SourcesBLoC>();
   late ScrollController scrollController;
 
   @override

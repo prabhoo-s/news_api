@@ -1,10 +1,19 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:news_api/Presentation/bloc/headlines_bloc.dart';
 import 'package:news_api/Presentation/pages/splash_screen.dart';
 import 'package:news_api/Utils/Constants.dart';
+import 'package:news_api/Utils/dependency_injector.dart';
 
-class NewsApiApp extends StatelessWidget {
+class NewsApiApp extends StatefulWidget {
+  @override
+  _NewsApiAppState createState() => _NewsApiAppState();
+}
+
+class _NewsApiAppState extends State<NewsApiApp> {
+  var carsListBloc = locator<TopHeadlinesBLoC>();
+
   @override
   Widget build(BuildContext context) {
     // setting orientations to portrait up and down.
@@ -23,5 +32,11 @@ class NewsApiApp extends StatelessWidget {
         DefaultWidgetsLocalizations.delegate,
       ],
     );
+  }
+
+  @override
+  void dispose() {
+    carsListBloc.dispose();
+    super.dispose();
   }
 }

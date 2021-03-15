@@ -1,11 +1,15 @@
 import 'dart:async';
 
+import 'package:news_api/Data/Database/AppDatabase.dart';
 import 'package:news_api/Data/Models/sources_list.dart';
 import 'package:news_api/Domain/Repositories/api_repository.dart';
+import 'package:news_api/Utils/dependency_injector.dart';
 
 import 'bloc_events.dart';
 
 class SourcesBLoC {
+  AppDataProvider provider = locator<AppDataProvider>();
+
   SourcesList _response = SourcesList([]);
   final _stateController = StreamController<SourcesList>();
   var api = APIRepository();
@@ -34,7 +38,12 @@ class SourcesBLoC {
   }
 
   _getSources() async {
-    _response = await api.fetchSources();
-    _inResponse.add(_response);
+    provider.sourcesResponse().then((value) {
+      _inResponse.add(value);
+    });
+  }
+
+  void injectDataProviderForTest(AppDataProvider provider) {
+    this.provider = provider;
   }
 }

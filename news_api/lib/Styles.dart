@@ -4,21 +4,21 @@ import 'package:flutter/widgets.dart';
 abstract class Styles {
   static const TextStyle appNormal = TextStyle(
     color: Color.fromRGBO(0, 0, 0, 0.8),
-    fontSize: 18,
+    fontSize: 14,
     fontStyle: FontStyle.normal,
     fontWeight: FontWeight.normal,
   );
 
   static const TextStyle appBold = TextStyle(
     color: Color.fromRGBO(0, 0, 0, 0.8),
-    fontSize: 18,
+    fontSize: 14,
     fontStyle: FontStyle.normal,
     fontWeight: FontWeight.bold,
   );
 
   static const TextStyle appSemiLight = TextStyle(
     color: Color(0xFF8E8E93),
-    fontSize: 13,
+    fontSize: 14,
     fontWeight: FontWeight.w300,
   );
 
@@ -35,7 +35,7 @@ abstract class Styles {
 
   static const TextStyle appNormalWhite = TextStyle(
     color: CupertinoColors.white,
-    fontSize: 18,
+    fontSize: 14,
     fontStyle: FontStyle.normal,
     fontWeight: FontWeight.normal,
   );

@@ -1,11 +1,15 @@
 import 'dart:async';
 
+import 'package:news_api/Data/Database/AppDatabase.dart';
 import 'package:news_api/Data/Models/top_headlines_list.dart';
 import 'package:news_api/Domain/Repositories/api_repository.dart';
+import 'package:news_api/Utils/dependency_injector.dart';
 
 import 'bloc_events.dart';
 
 class SearchBLoC {
+  AppDataProvider provider = locator<AppDataProvider>();
+
   TopHeadlinesList _response = TopHeadlinesList([]);
   final _stateController = StreamController<TopHeadlinesList>();
   final api = APIRepository();
@@ -35,8 +39,13 @@ class SearchBLoC {
   }
 
   void submitQuery(String query) async {
-    _response = await api.search(query);
-    _inResponse.add(_response);
+    provider.search(query).then((value) {
+      _inResponse.add(value);
+    });
+  }
+
+  void injectDataProviderForTest(AppDataProvider provider) {
+    this.provider = provider;
   }
 
   void _clear() async {

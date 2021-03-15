@@ -1,10 +1,13 @@
 import 'dart:async';
+import 'package:news_api/Data/Database/AppDatabase.dart';
 import 'package:news_api/Data/Models/top_headlines_list.dart';
 import 'package:news_api/Domain/Repositories/api_repository.dart';
-
-import 'bloc_events.dart';
+import 'package:news_api/Presentation/bloc/bloc_events.dart';
+import 'package:news_api/Utils/dependency_injector.dart';
 
 class TopHeadlinesBLoC {
+  AppDataProvider provider = locator<AppDataProvider>();
+
   TopHeadlinesList _response = TopHeadlinesList([]);
   final _stateController = StreamController<TopHeadlinesList>();
   var api = APIRepository();
@@ -33,7 +36,12 @@ class TopHeadlinesBLoC {
   }
 
   _getTopHeadlines() async {
-    _response = await api.fetchTopHeadlines();
-    _inResponse.add(_response);
+    provider.topHeadlinesResponse().then((value) {
+      _inResponse.add(value);
+    });
+  }
+
+  void injectDataProviderForTest(AppDataProvider provider) {
+    this.provider = provider;
   }
 }

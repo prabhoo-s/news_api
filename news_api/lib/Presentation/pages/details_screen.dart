@@ -91,7 +91,7 @@ class DetailsScreen extends StatelessWidget {
                   ),
                   Text(
                     news.description,
-                    style: TextStyle(fontSize: 18.0),
+                    style: Styles.appSemiLight,
                   ),
                 ],
               ),

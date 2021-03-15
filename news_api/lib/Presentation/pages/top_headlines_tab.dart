@@ -6,6 +6,7 @@ import 'package:news_api/Presentation/bloc/headlines_bloc.dart';
 import 'package:news_api/Presentation/widgets/loading_widget.dart';
 import 'package:news_api/Presentation/widgets/top_headlines_tab_row.dart';
 import 'package:news_api/Styles.dart';
+import 'package:news_api/Utils/dependency_injector.dart';
 
 class TopHeadlinesTab extends StatefulWidget {
   @override
@@ -14,7 +15,7 @@ class TopHeadlinesTab extends StatefulWidget {
 
 class _TopHeadlinesTabState extends State<TopHeadlinesTab> {
   late Future<TopHeadlinesList> topHeadlines;
-  final _bloc = TopHeadlinesBLoC();
+  var _bloc = locator<TopHeadlinesBLoC>();
 
   @override
   void initState() {

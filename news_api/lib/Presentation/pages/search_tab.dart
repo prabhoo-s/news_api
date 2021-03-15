@@ -6,6 +6,7 @@ import 'package:news_api/Presentation/bloc/search_bloc.dart';
 import 'package:news_api/Presentation/widgets/loading_widget.dart';
 import 'package:news_api/Presentation/widgets/top_headlines_tab_row.dart';
 import 'package:news_api/Styles.dart';
+import 'package:news_api/Utils/dependency_injector.dart';
 
 class SearchTab extends StatefulWidget {
   @override
@@ -15,7 +16,7 @@ class SearchTab extends StatefulWidget {
 }
 
 class _SearchTabState extends State<SearchTab> {
-  final _bloc = SearchBLoC();
+  var _bloc = locator<SearchBLoC>();
 
   @override
   void initState() {
