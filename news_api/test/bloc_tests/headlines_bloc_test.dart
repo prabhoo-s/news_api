@@ -3,8 +3,8 @@ import 'package:mockito/mockito.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:news_api/Data/Models/top_headlines.dart';
 import 'package:news_api/Data/Models/top_headlines_list.dart';
-import 'package:news_api/Presentation/bloc/bloc_events.dart';
-import 'package:news_api/Presentation/bloc/headlines_bloc.dart';
+import 'package:news_api/Domain/bloc/bloc_events.dart';
+import 'package:news_api/Domain/bloc/headlines_bloc.dart';
 import 'package:news_api/Utils/dependency_injector.dart';
 
 import '../TestImports/headlines_bloc_test.mocks.dart';

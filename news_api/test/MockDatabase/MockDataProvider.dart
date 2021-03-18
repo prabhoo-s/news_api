@@ -8,14 +8,14 @@ class MockDatasource implements AppDataProvider {
   @override
   Future<TopHeadlinesList> topHeadlinesResponse() {
     final headlinesResult = TopHeadlinesList(
-        [TopHeadlines("author", "title", "desc", "url", "urlthumb", "date")]);
+        [TopHeadlines("author", "title", "desc", "url", "urlthumb", "2021-03-17T21:57:54Z")]);
     return Future.value(headlinesResult);
   }
 
   @override
   Future<TopHeadlinesList> search(String searchString) {
     final headlinesResult = TopHeadlinesList(
-        [TopHeadlines("author", "title", "desc", "url", "urlthumb", "date")]);
+        [TopHeadlines("author", "title", "desc", "url", "urlthumb", "2021-03-17T21:57:54Z")]);
     return Future.value(headlinesResult);
   }
 

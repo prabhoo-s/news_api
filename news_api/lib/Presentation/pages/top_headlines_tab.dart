@@ -1,8 +1,8 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:news_api/Data/Models/top_headlines_list.dart';
-import 'package:news_api/Presentation/bloc/bloc_events.dart';
-import 'package:news_api/Presentation/bloc/headlines_bloc.dart';
+import 'package:news_api/Domain/bloc/bloc_events.dart';
+import 'package:news_api/Domain/bloc/headlines_bloc.dart';
 import 'package:news_api/Presentation/widgets/loading_widget.dart';
 import 'package:news_api/Presentation/widgets/top_headlines_tab_row.dart';
 import 'package:news_api/Styles.dart';

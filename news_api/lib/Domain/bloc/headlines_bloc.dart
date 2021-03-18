@@ -2,7 +2,7 @@ import 'dart:async';
 import 'package:news_api/Data/Database/AppDatabase.dart';
 import 'package:news_api/Data/Models/top_headlines_list.dart';
 import 'package:news_api/Domain/Repositories/api_repository.dart';
-import 'package:news_api/Presentation/bloc/bloc_events.dart';
+import 'package:news_api/Domain/bloc/bloc_events.dart';
 import 'package:news_api/Utils/dependency_injector.dart';
 
 class TopHeadlinesBLoC {

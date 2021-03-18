@@ -2,7 +2,7 @@ import 'package:mockito/mockito.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:news_api/Data/Models/top_headlines.dart';
 import 'package:news_api/Data/Models/top_headlines_list.dart';
-import 'package:news_api/Presentation/bloc/search_bloc.dart';
+import 'package:news_api/Domain/bloc/search_bloc.dart';
 import 'package:news_api/Utils/dependency_injector.dart';
 
 import '../TestImports/headlines_bloc_test.mocks.dart';

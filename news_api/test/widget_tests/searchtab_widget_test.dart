@@ -1,7 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
-import 'package:news_api/Presentation/bloc/search_bloc.dart';
+import 'package:news_api/Domain/bloc/search_bloc.dart';
 import 'package:news_api/Presentation/pages/search_tab.dart';
 import 'package:news_api/Utils/dependency_injector.dart';
 

@@ -1,7 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:news_api/Presentation/bloc/headlines_bloc.dart';
+import 'package:news_api/Domain/bloc/headlines_bloc.dart';
 import 'package:news_api/Presentation/pages/splash_screen.dart';
 import 'package:news_api/Utils/Constants.dart';
 import 'package:news_api/Utils/dependency_injector.dart';

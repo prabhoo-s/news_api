@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
-import 'package:news_api/Presentation/bloc/bloc_events.dart';
-import 'package:news_api/Presentation/bloc/sources_bloc.dart';
+import 'package:news_api/Domain/bloc/bloc_events.dart';
+import 'package:news_api/Domain/bloc/sources_bloc.dart';
 import 'package:news_api/Presentation/pages/sources_tab.dart';
 import 'package:news_api/Utils/dependency_injector.dart';
 

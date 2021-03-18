@@ -1,8 +1,8 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:news_api/Data/Models/top_headlines_list.dart';
-import 'package:news_api/Presentation/bloc/bloc_events.dart';
-import 'package:news_api/Presentation/bloc/search_bloc.dart';
+import 'package:news_api/Domain/bloc/bloc_events.dart';
+import 'package:news_api/Domain/bloc/search_bloc.dart';
 import 'package:news_api/Presentation/widgets/loading_widget.dart';
 import 'package:news_api/Presentation/widgets/top_headlines_tab_row.dart';
 import 'package:news_api/Styles.dart';
@@ -28,28 +28,31 @@ class _SearchTabState extends State<SearchTab> {
   @override
   Widget build(BuildContext context) {
     Widget _searchField() {
-      return CupertinoTextField(
-        prefix: Padding(
-          padding: const EdgeInsets.all(8.0),
-          child: const Icon(
-            CupertinoIcons.search,
-            color: Styles.searchIconColor,
+      return Padding(
+        padding: const EdgeInsets.all(8.0),
+        child: CupertinoTextField(
+          prefix: Padding(
+            padding: const EdgeInsets.all(8.0),
+            child: const Icon(
+              CupertinoIcons.search,
+              color: Styles.searchIconColor,
+            ),
           ),
+          placeholder: 'Search by news title',
+          placeholderStyle: Styles.appDisabledGray,
+          cursorColor: Styles.searchIconColor,
+          style: Styles.appNormal,
+          maxLines: 1,
+          padding: const EdgeInsets.symmetric(horizontal: 6, vertical: 12),
+          clearButtonMode: OverlayVisibilityMode.editing,
+          decoration: new BoxDecoration(
+              borderRadius: new BorderRadius.all(new Radius.circular(30)),
+              color: Styles.searchBackground),
+          onChanged: (value) {
+            _search(value);
+          },
+          autocorrect: false,
         ),
-        placeholder: 'Search by news title',
-        placeholderStyle: Styles.appDisabledGray,
-        cursorColor: Styles.searchIconColor,
-        style: Styles.appNormal,
-        maxLines: 1,
-        padding: const EdgeInsets.symmetric(horizontal: 6, vertical: 12),
-        clearButtonMode: OverlayVisibilityMode.editing,
-        decoration: new BoxDecoration(
-            borderRadius: new BorderRadius.all(new Radius.circular(30)),
-            color: Styles.searchBackground),
-        onChanged: (value) {
-          _search(value);
-        },
-        autocorrect: false,
       );
     }
 
